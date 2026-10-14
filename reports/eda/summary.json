@@ -1,0 +1,25 @@
+{
+  "rows": 303,
+  "raw_columns": 14,
+  "feature_columns": 13,
+  "duplicate_rows": 0,
+  "missing_values": {
+    "ca": 4,
+    "thal": 2
+  },
+  "binary_target_counts": {
+    "0": 164,
+    "1": 139
+  },
+  "binary_target_percentages": {
+    "0": 54.13,
+    "1": 45.87
+  },
+  "source_target_counts": {
+    "0": 164,
+    "1": 55,
+    "2": 36,
+    "3": 35,
+    "4": 13
+  }
+}

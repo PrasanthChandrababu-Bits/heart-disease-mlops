@@ -1,0 +1,29 @@
+{
+  "model_name": "logistic_regression",
+  "features": [
+    "age",
+    "trestbps",
+    "chol",
+    "thalach",
+    "oldpeak",
+    "sex",
+    "cp",
+    "fbs",
+    "restecg",
+    "exang",
+    "slope",
+    "ca",
+    "thal"
+  ],
+  "decision_threshold": 0.5,
+  "selection_rule": "highest cross-validation ROC-AUC",
+  "cross_validation_splits": 5,
+  "cross_validation_roc_auc": 0.9031400966183576,
+  "test_metrics": {
+    "accuracy": 0.8852459016393442,
+    "precision": 0.8387096774193549,
+    "recall": 0.9285714285714286,
+    "roc_auc": 0.9664502164502164
+  },
+  "comparison_artifact": "../reports/modeling/model_comparison.json"
+}

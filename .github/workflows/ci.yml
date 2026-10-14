@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Lint
+        run: flake8 src scripts tests
+
+      - name: Test
+        run: pytest -q
+
+      - name: Train and package model
+        run: python scripts/train.py
+
+      - name: Build serving image
+        run: docker build --tag heart-disease-mlops:${{ github.sha }} .
+
+      - name: Upload model and evaluation artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: heart-disease-model-${{ github.sha }}
+          path: |
+            models/
+            reports/eda/
+            reports/modeling/
+          if-no-files-found: error
+          retention-days: 14
