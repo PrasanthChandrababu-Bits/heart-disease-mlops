@@ -26,3 +26,7 @@ data/raw/*.data
 
 # Logs
 *.log
+
+# Local-only helper docs (not part of submission repo)
+docs/submission-steps.md
+docs/video-checklist.md
